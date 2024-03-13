@@ -9,7 +9,7 @@ app.config['MYSQL_USER'] = 'root'  # Nom d'utilisateur MySQL
 app.config['MYSQL_PASSWORD'] = ''  # Mot de passe MySQL
 app.config['MYSQL_DB'] = 'basededonneesfestival'  # Nom de la base de données
 
-# Établir une connexion à la base de données de merde
+# Établir une connexion à la base de données de con
 conn = pymysql.connect(host=app.config['MYSQL_HOST'],
                        user=app.config['MYSQL_USER'],
                        password=app.config['MYSQL_PASSWORD'],
