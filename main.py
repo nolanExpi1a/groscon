@@ -1,16 +1,34 @@
-# This is a sample Python script.
+import pymysql
+from flask import Flask
 
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+app = Flask(__name__)
 
+# Configuration de la base de données
+app.config['MYSQL_HOST'] = 'localhost'  # Adresse IP ou nom d'hôte du serveur MySQL
+app.config['MYSQL_USER'] = 'root'  # Nom d'utilisateur MySQL
+app.config['MYSQL_PASSWORD'] = ''  # Mot de passe MySQL
+app.config['MYSQL_DB'] = 'basededonneesfestival'  # Nom de la base de données
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'damien, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Établir une connexion à la base de données de merde
+conn = pymysql.connect(host=app.config['MYSQL_HOST'],
+                       user=app.config['MYSQL_USER'],
+                       password=app.config['MYSQL_PASSWORD'],
+                       database=app.config['MYSQL_DB'])
 
+# Créer un curseur pour exécuter des requêtes SQL
+cursor = conn.cursor()
 
-# Press the green button in the gutter to run the script.
+# Exemple : exécution d'une requête pour récupérer toutes les lignes d'une table nommée 'ma_table'
+cursor.execute("SELECT * FROM t_todolist_calendrier")
+rows = cursor.fetchall()
+
+# Parcourir les résultats
+for row in rows:
+    print("chier ce module 164",row)
+
+# Fermer le curseur et la connexion à la base de données
+cursor.close()
+conn.close()
+
 if __name__ == '__main__':
-    print_hi('ton degradé à la machette')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    app.run()
